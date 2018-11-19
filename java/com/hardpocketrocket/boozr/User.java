@@ -1,6 +1,7 @@
 package com.hardpocketrocket.boozr;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
@@ -15,8 +16,16 @@ public class User extends RealmObject {
         days.add(new Day(date));
     }
 
-    public LocalDate getDayOfLastLogin(){
-        return days.get(days.size() - 1).getDate();
+    public int daysSinceLastLogin(){
+        LocalDate dayOfLastLogin = dateOfLastLogin();
+        LocalDate today = LocalDate.now();
+
+        int daysBetween = (int)dayOfLastLogin.until(today, ChronoUnit.DAYS);
+        return daysBetween;
+    }
+
+    public LocalDate dateOfLastLogin(){
+        return this.days.get(days.size() - 1).getDate();
     }
 
     public User(String firstName, String lastName) {
@@ -40,5 +49,9 @@ public class User extends RealmObject {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public RealmList<Day> getDays() {
+        return days;
     }
 }

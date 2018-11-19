@@ -11,14 +11,12 @@ import android.view.View;
 import android.widget.EditText;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
 
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
-    private Calendar currentDate = Calendar.getInstance();
     private User user;
 
     @Override
@@ -30,17 +28,25 @@ public class MainActivity extends AppCompatActivity {
         Realm realm = Realm.getDefaultInstance();
         RealmResults<User> users = realm.where(User.class).findAll();
 
+        //====================================CODE TO DELETE THE LAST DATE==========================
+//        Realm.getDefaultInstance().beginTransaction();
+//        User u = Realm.getDefaultInstance().where(User.class).findFirst();
+//        RealmList<Day> d = u.getDays();
+//        d.deleteLastFromRealm();
+//        Realm.getDefaultInstance().commitTransaction();
+        //==========================================================================================
+
         if (users.size() == 0) {
             launchNewUserDialog();
         } else {
             user = users.first();
-            if(user.getDayOfLastLogin().equals(LocalDate.now())) {
+            int daysSinceLastLogin = user.daysSinceLastLogin();
 
-            }else {
-                Realm.getDefaultInstance().beginTransaction();
-                user.addDay(LocalDate.now());
-                Realm.getDefaultInstance().commitTransaction();
+            Realm.getDefaultInstance().beginTransaction();
+            for (int i = 0; i < daysSinceLastLogin; i++) {
+                user.addDay(user.dateOfLastLogin().plusDays((long) (i + 1)));
             }
+            Realm.getDefaultInstance().commitTransaction();
         }
 
         CardView userInfoLayout = findViewById(R.id.user_info_card);
@@ -59,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
         addDrinkLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getApplicationContext(), NewDrinkActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -76,13 +83,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    private void daysSinceLastLogin() {
-        LocalDate dayOfLastLogin = user.getDayOfLastLogin();
-        LocalDate today = LocalDate.now();
-
-        int daysBetween = (int)dayOfLastLogin.until(today, ChronoUnit.DAYS);
     }
 
     private void launchNewUserDialog() {

@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/screenBackground"
     tools:context=".MainActivity">
 
-    <ImageView
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/logo"
         android:layout_width="0dp"
         android:layout_height="100dp"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@color/colorAccent" />
