@@ -1,6 +1,6 @@
 package com.hardpocketrocket.boozr;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
@@ -10,15 +10,20 @@ public class Day extends RealmObject {
     private int totalAmountOfDrinks;
     private int totalCostOfDrinks;
 
-    private Date date;
-    private RealmList<Drink> drinks  = new RealmList<>();
+    private String date;
+    private RealmList<Drink> drinks = new RealmList<>();
 
-    public Day(Date date, int numberOfDrinks, int totalAmountOfDrinks, int totalCostOfDrinks) {
-        this.date = date;
-        this.numberOfDrinks = numberOfDrinks;
-        this.totalAmountOfDrinks = totalAmountOfDrinks;
-        this.totalCostOfDrinks = totalCostOfDrinks;
+    public Day(LocalDate date) {
+        this.date = date.toString();
+        this.numberOfDrinks = 0;
+        this.totalAmountOfDrinks = 0;
+        this.totalCostOfDrinks = 0;
     }
 
-    public Day(){}
+    public Day() {
+    }
+
+    public LocalDate getDate() {
+        return LocalDate.parse(date);
+    }
 }
