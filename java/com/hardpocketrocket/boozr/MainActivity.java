@@ -10,10 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
+import com.hardpocketrocket.boozr.Model.User;
+
 import java.time.LocalDate;
 
 import io.realm.Realm;
-import io.realm.RealmList;
 import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
@@ -73,7 +74,8 @@ public class MainActivity extends AppCompatActivity {
         graphViewLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getApplicationContext(), GraphActivity.class);
+                startActivity(intent);
             }
         });
 

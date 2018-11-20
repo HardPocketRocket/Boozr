@@ -3,7 +3,8 @@
     <color name="colorPrimary">#007096</color>
     <color name="colorPrimaryDark">#005977</color>
     <color name="colorAccent">#007096</color>
-    <color name="imageBackground">#555555</color>
-    <color name="screenBackground">#262626</color>
+    <color name="imageBackground">#000000</color>
+    <color name="screenBackground">#353535</color>
     <color name="buttonOutline">#ff8e00</color>
+    <color name="textOutline">#99cc00</color>
 </resources>

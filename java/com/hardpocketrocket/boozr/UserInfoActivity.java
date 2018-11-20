@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.hardpocketrocket.boozr.Model.User;
+
 import io.realm.Realm;
 
 public class UserInfoActivity extends AppCompatActivity {

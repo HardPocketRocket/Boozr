@@ -1,4 +1,6 @@
-package com.hardpocketrocket.boozr;
+package com.hardpocketrocket.boozr.Model;
+
+import com.hardpocketrocket.boozr.Model.Day;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

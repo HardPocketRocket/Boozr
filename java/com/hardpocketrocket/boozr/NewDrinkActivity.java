@@ -5,14 +5,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.hardpocketrocket.boozr.Model.Day;
+import com.hardpocketrocket.boozr.Model.Drink;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
+
+import io.realm.Realm;
 
 public class NewDrinkActivity extends AppCompatActivity {
     private Spinner alcoholTypesSpinner;
+    private Button addDrinkButton;
+    private EditText costInput;
     private ArrayList<String> alcoholTypes = new ArrayList<>();
 
     @Override
@@ -50,6 +59,20 @@ public class NewDrinkActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        costInput = findViewById(R.id.cost_input);
+
+        addDrinkButton = findViewById(R.id.add_drink_button);
+        addDrinkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Realm.getDefaultInstance().beginTransaction();
+                Day day = Realm.getDefaultInstance().where(Day.class).equalTo("date", LocalDate.now().toString()).findFirst();
+                day.addDrink(new Drink(alcoholTypesSpinner.getSelectedItem().toString(), Integer.parseInt(costInput.getText().toString())));
+                Realm.getDefaultInstance().commitTransaction();
+                finish();
             }
         });
     }
