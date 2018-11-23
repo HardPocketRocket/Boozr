@@ -19,10 +19,10 @@ public class TwitterActivity extends AppCompatActivity {
 
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
-                .setOAuthConsumerKey("EYj4wO0Jb9jSIqH03vvSxSiHe")
-                .setOAuthConsumerSecret("MPultqSupxLmnlM7kjfkYduH7f2oNlALMR2FRGdEBswDKBOZ5R")
-                .setOAuthAccessToken("1065936988853944323-BuLwqPSPWCHWVyBa6qj2TAS1qpXTrU")
-                .setOAuthAccessTokenSecret("aQnStqAt3Tee8eVnrKYCbaiJUkAcv9B26DaEsvDorqXuS");
+                .setOAuthConsumerKey(getString(R.string.consumer_key))
+                .setOAuthConsumerSecret(getString(R.string.consumer_secret_key))
+                .setOAuthAccessToken(getString(R.string.access_key))
+                .setOAuthAccessTokenSecret(getString(R.string.access_secret_key));
         TwitterFactory tf = new TwitterFactory(cb.build());
         twitter = tf.getInstance();
 
