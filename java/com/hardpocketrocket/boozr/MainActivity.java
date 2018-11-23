@@ -29,8 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Realm.init(this);
-        Realm realm = Realm.getDefaultInstance();
-        RealmResults<User> users = realm.where(User.class).findAll();
+        RealmResults<User> users = Realm.getDefaultInstance().where(User.class).findAll();
 
         //====================================CODE TO DELETE THE LAST DATE==========================
 //        Realm.getDefaultInstance().beginTransaction();

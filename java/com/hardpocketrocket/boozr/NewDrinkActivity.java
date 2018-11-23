@@ -70,7 +70,11 @@ public class NewDrinkActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Realm.getDefaultInstance().beginTransaction();
                 Day day = Realm.getDefaultInstance().where(Day.class).equalTo("date", LocalDate.now().toString()).findFirst();
-                day.addDrink(new Drink(alcoholTypesSpinner.getSelectedItem().toString(), Integer.parseInt(costInput.getText().toString())));
+                try{
+                    day.addDrink(new Drink(alcoholTypesSpinner.getSelectedItem().toString(), Integer.parseInt(costInput.getText().toString())));
+                }catch(Exception e){
+                    day.addDrink(new Drink(alcoholTypesSpinner.getSelectedItem().toString(), 0));
+                }
                 Realm.getDefaultInstance().commitTransaction();
                 finish();
             }
