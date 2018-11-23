@@ -35,7 +35,7 @@ public class GraphActivity extends AppCompatActivity {
         Realm.getDefaultInstance().commitTransaction();
 
         if (days.size() >= 14) {
-            while (days.size() >= 14){
+            while (days.size() >= 14) {
                 days.remove(0);
             }
         }
@@ -57,12 +57,14 @@ public class GraphActivity extends AppCompatActivity {
         barGraph.addSeries(costSeries);
         costSeries.setSpacing(10);
 
-        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(lineGraph);
-        staticLabelsFormatter.setHorizontalLabels(dates.toArray(new String[0]));
-        lineGraph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+        if (dates.size() > 1) {
+            StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(lineGraph);
+            staticLabelsFormatter.setHorizontalLabels(dates.toArray(new String[0]));
+            lineGraph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
-        staticLabelsFormatter = new StaticLabelsFormatter(barGraph);
-        staticLabelsFormatter.setHorizontalLabels(dates.toArray(new String[0]));
-        barGraph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+            staticLabelsFormatter = new StaticLabelsFormatter(barGraph);
+            staticLabelsFormatter.setHorizontalLabels(dates.toArray(new String[0]));
+            barGraph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+        }
     }
 }

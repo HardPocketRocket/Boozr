@@ -10,11 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
+import com.hardpocketrocket.boozr.Model.Day;
 import com.hardpocketrocket.boozr.Model.User;
 
 import java.time.LocalDate;
+import java.time.Month;
 
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,10 +45,11 @@ public class MainActivity extends AppCompatActivity {
         } else {
             user = users.first();
             int daysSinceLastLogin = user.daysSinceLastLogin();
+            LocalDate staticDate = user.dateOfLastLogin();
 
             Realm.getDefaultInstance().beginTransaction();
-            for (int i = 0; i < daysSinceLastLogin; i++) {
-                user.addDay(user.dateOfLastLogin().plusDays((long) (i + 1)));
+            for (int i = 1; i <= daysSinceLastLogin; i++) {
+                user.addDay(staticDate.plusDays((long) (i)));
             }
             Realm.getDefaultInstance().commitTransaction();
         }
@@ -82,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
         twitterPostLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getApplicationContext(), TwitterActivity.class);
+                startActivity(intent);
             }
         });
     }
