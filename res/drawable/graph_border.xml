@@ -2,12 +2,12 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <stroke
         android:width="4dp"
-        android:color="@color/imageOutline" />
-    <solid android:color="@color/imageBackground" />
+        android:color="@color/graphOutline" />
+    <solid android:color="@color/graphBackground" />
     <padding
         android:bottom="7dp"
-        android:left="7dp"
-        android:right="7dp"
+        android:left="4dp"
+        android:right="4dp"
         android:top="7dp" />
     <corners android:radius="4dp" />
 </shape>

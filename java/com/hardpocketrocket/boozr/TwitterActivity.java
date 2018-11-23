@@ -26,7 +26,7 @@ public class TwitterActivity extends AppCompatActivity {
         TwitterFactory tf = new TwitterFactory(cb.build());
         twitter = tf.getInstance();
 
-        new PostTwitterAsync().execute("Boozr: Hello Twitter");
+        new PostTwitterAsync().execute("Boozr: Hello Twitter 2");
     }
 
     public class PostTwitterAsync extends AsyncTask<String, Void, String>{

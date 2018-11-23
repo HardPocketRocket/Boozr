@@ -43,10 +43,13 @@ public class GraphActivity extends AppCompatActivity {
         ArrayList<DataPoint> numberOfDrinksData = new ArrayList<>();
         ArrayList<DataPoint> totalSpentData = new ArrayList<>();
         ArrayList<String> dates = new ArrayList<>();
+        numberOfDrinksData.add(new DataPoint(0,0));
+        totalSpentData.add(new DataPoint(0,0));
+        dates.add("Days");
 
         for (int i = 0; i < days.size(); i++) {
-            numberOfDrinksData.add(new DataPoint(i, days.get(i).getNumberOfDrinks()));
-            totalSpentData.add(new DataPoint(i, days.get(i).getTotalCostOfDrinks()));
+            numberOfDrinksData.add(new DataPoint(i + 1, days.get(i).getNumberOfDrinks()));
+            totalSpentData.add(new DataPoint(i + 1, days.get(i).getTotalCostOfDrinks()));
             dates.add(days.get(i).getDate().toString());
         }
 
@@ -57,14 +60,12 @@ public class GraphActivity extends AppCompatActivity {
         barGraph.addSeries(costSeries);
         costSeries.setSpacing(10);
 
-        if (dates.size() > 1) {
-            StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(lineGraph);
-            staticLabelsFormatter.setHorizontalLabels(dates.toArray(new String[0]));
-            lineGraph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(lineGraph);
+        staticLabelsFormatter.setHorizontalLabels(dates.toArray(new String[0]));
+        lineGraph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
-            staticLabelsFormatter = new StaticLabelsFormatter(barGraph);
-            staticLabelsFormatter.setHorizontalLabels(dates.toArray(new String[0]));
-            barGraph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
-        }
+        staticLabelsFormatter = new StaticLabelsFormatter(barGraph);
+        staticLabelsFormatter.setHorizontalLabels(dates.toArray(new String[0]));
+        barGraph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
     }
 }
