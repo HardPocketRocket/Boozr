@@ -53,6 +53,8 @@ public class NewDrinkActivity extends AppCompatActivity {
                     alcoholImage.setImageResource(R.drawable.rum);
                 }else if(position == 6){
                     alcoholImage.setImageResource(R.drawable.cocktail);
+                }else if(position == 7){
+                    alcoholImage.setImageResource(R.drawable.martini);
                 }
             }
 
@@ -89,5 +91,6 @@ public class NewDrinkActivity extends AppCompatActivity {
         alcoholTypes.add("Vodka");
         alcoholTypes.add("Rum");
         alcoholTypes.add("Cocktail");
+        alcoholTypes.add("Martini");
     }
 }

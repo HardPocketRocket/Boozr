@@ -37,6 +37,7 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/spinner_border"
         android:text="What will get Posted to Twitter"
+        android:textColor="@android:color/background_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/twitter_header" />
@@ -59,10 +60,22 @@
         android:id="@+id/post_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="120dp"
         android:background="@drawable/button_border"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="235dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/spinner_border"
+        android:text="Check Out your Tweet at https://twitter.com/BoozR_MobWeb or go on Twitter and search for user @BoozR_MobWeb"
+        android:textColor="@android:color/background_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tweet_edit" />
 </android.support.constraint.ConstraintLayout>

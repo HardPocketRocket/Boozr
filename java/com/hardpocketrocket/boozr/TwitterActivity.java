@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.hardpocketrocket.boozr.Model.User;
 
@@ -58,8 +59,18 @@ public class TwitterActivity extends AppCompatActivity {
         protected String doInBackground(String... tweet) {
             try {
                 twitter.updateStatus(tweet[0]);
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        Toast.makeText(getApplicationContext(), "Successfully Posted To Twitter", Toast.LENGTH_LONG).show();
+                    }
+                });
             } catch (TwitterException e) {
                 e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        Toast.makeText(getApplicationContext(), "Failed Posting To Twitter", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
             return result;
         }
