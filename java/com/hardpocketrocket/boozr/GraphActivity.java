@@ -50,7 +50,7 @@ public class GraphActivity extends AppCompatActivity {
         for (int i = 0; i < days.size(); i++) {
             numberOfDrinksData.add(new DataPoint(i + 1, days.get(i).getNumberOfDrinks()));
             totalSpentData.add(new DataPoint(i + 1, days.get(i).getTotalCostOfDrinks()));
-            dates.add(days.get(i).getDate().toString());
+            dates.add(String.valueOf(days.get(i).getDate().getDayOfMonth()));
         }
 
         LineGraphSeries<DataPoint> drinksSeries = new LineGraphSeries<>(numberOfDrinksData.toArray(new DataPoint[0]));
